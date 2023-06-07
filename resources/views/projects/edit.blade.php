@@ -22,7 +22,7 @@
         </textarea>
     </div>
     <div class="d-flex justify-content-center mb-3 gap-3">
-        <button type="submit" class="btn btn-primary">Edit comic</button>
+        <button type="submit" class="btn btn-primary">Edit project</button>
         <button type="reset" class="btn btn-secondary">Reset form</button>
     </div>
 </form>

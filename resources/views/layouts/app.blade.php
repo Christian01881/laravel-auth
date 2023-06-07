@@ -46,6 +46,7 @@
                         <li class="nav-item d-flex">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                             <a class="nav-link" href="{{route('admin.projects.index') }}">Index</a>
+                            <a class="nav-link" href="{{route('admin.projects.create') }}">Add new Project</a>
                         </li>
                     </ul>
 

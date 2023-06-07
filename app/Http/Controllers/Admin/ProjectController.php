@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -35,9 +38,11 @@ class ProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request, Project $project)
     {
-        //
+        $form_data = $request->validated();
+        $project = Project::create($form_data);
+        return redirect()->route('admin.projects.show', $project->id);
     }
 
     /**
@@ -69,9 +74,9 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        $form_data = $request->all();
+        $form_data = $request->validated();
         $project->update($form_data);
         return redirect()->route('admin.projects.show', $project->id);
     }
@@ -85,6 +90,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
-        return redirect()->route('projects.index')->with('message', "{$project->title} has been deleted");
+        return redirect()->route('admin.projects.index')->with('message', "{$project->title} has been deleted");
     }
 }
